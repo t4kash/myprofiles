@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<root>
+  <list>
+    <item>
+      <name>LeaveInsMode with EISUU(Vi, Terminal)</name>
+      <identifier>private.app_terminal_esc_with_eisuu</identifier>
+      <only>VI, TERMINAL</only>
+      <autogen>--KeyToKey-- KeyCode::ESCAPE, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
+      <autogen>--KeyToKey-- KeyCode::C, VK_CONTROL, KeyCode::C, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
+      <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
+    </item>
+    <item>
+      <name>Command key to kana,eisuu</name>
+      <not>VIRTUALMACHINE</not>
+      <identifier>private.jis_command2eisuukana_prefer_command</identifier>
+      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::JIS_EISUU</autogen>
+      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, KeyCode::JIS_KANA</autogen>
+    </item>
+    <item>
+      <name>Parallels windows kana key</name>
+      <identifier>private.app_parallels_windows_kana</identifier>
+      <only>VIRTUALMACHINE</only>
+      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::BACKQUOTE, VK_OPTION</autogen>
+    </item>
+  </list>
+</root>

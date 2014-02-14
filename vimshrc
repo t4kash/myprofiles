@@ -1,0 +1,6 @@
+
+alias doc='cd ~/Documents'
+alias down='cd ~/Downloads'
+alias svn='/usr/local/bin/svn'
+alias works='cd ~/Documents/workspace'
+
