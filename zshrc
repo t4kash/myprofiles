@@ -43,20 +43,22 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
-#export SVN_EDITOR=vi
-export SVN_EDITOR=/usr/local/bin/vim
 
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-alias view='/usr/local/bin/vim -R'
-alias vim='/usr/local/bin/vim'
-alias vi='/usr/local/bin/vim'
+if [ -f /usr/local/bin/vim ]; then
+  export SVN_EDITOR=/usr/local/bin/vim
+  alias view='/usr/local/bin/vim -R'
+  alias vim='/usr/local/bin/vim'
+  alias vi='/usr/local/bin/vim'
+fi
+
 alias ls='ls -F'
 alias doc='cd ~/Documents'
 alias down='cd ~/Downloads'
-alias svn='/usr/local/bin/svn'
+[ -f /usr/local/bin/svn ] && alias svn='/usr/local/bin/svn'
 alias works='cd ~/Documents/workspace'
 alias memo='cd ~/Dropbox/memo'
 
@@ -84,7 +86,7 @@ PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/share/n
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 #export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+[ -d ~/.rbenv ] && eval "$(rbenv init -)"
 
 # for Mac sqlplus
 #export DYLD_LIBRARY_PATH=/Applications/instantclient

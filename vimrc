@@ -117,6 +117,8 @@ if exists('*neobundle#rc')
   "NeoBundle 'xolox/vim-misc'
   "NeoBundle 'xolox/vim-session'
 
+  NeoBundle 'kchmck/vim-coffee-script'
+
   NeoBundleCheck
 endif
 
