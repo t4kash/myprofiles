@@ -145,6 +145,7 @@ nmap <Space>s :let g:myvsbufnr=bufnr("%")\|VimShell<CR>
 nmap <Space>c :SyntasticCheck<CR>
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nmap <Space>2 :set ts=2 sts=2 sw=2<CR>
+nmap <Space>4 :set ts=4 sts=4 sw=4<CR>
 nmap <Space>z :w<CR>
 nmap <Space>q :q<CR>
 nmap <Space>n :NERDTreeToggle<CR>
