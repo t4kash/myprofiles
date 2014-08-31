@@ -19,22 +19,22 @@ setopt auto_cd
 setopt list_packed
 setopt nolistbeep
 
-basePS="[%n@%m %c]$ "
+# basePS="[%n@%m %c]$ "
 # PROMPT="%B%{[33m%}${basePS}%{[m%}%b"
 
 # set terminal title
-case "${TERM}" in
-kterm*|xterm*)
-    precmd() {
-        #echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-        echo -ne "\033]0;s\007"
-    }
-    PROMPT="%B%{[33m%}${basePS}%{[m%}%b"
-    ;;
-*)
-    PROMPT="${basePS}"
-    ;;
-esac
+#case "${TERM}" in
+#kterm*|xterm*)
+#    precmd() {
+#        #echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+#        echo -ne "\033]0;s\007"
+#    }
+#    PROMPT="%B%{[33m%}${basePS}%{[m%}%b"
+#    ;;
+#*)
+#    PROMPT="${basePS}"
+#    ;;
+#esac
 
 # historical backward/forward search with linehead string binded to ^P/^N
 autoload history-search-end
@@ -55,7 +55,7 @@ if [ -f /usr/local/bin/vim ]; then
   alias vi='/usr/local/bin/vim'
 fi
 
-alias ls='ls -F'
+#alias ls='ls -F'
 alias doc='cd ~/Documents'
 alias down='cd ~/Downloads'
 [ -f /usr/local/bin/svn ] && alias svn='/usr/local/bin/svn'
@@ -69,8 +69,9 @@ function grepsvn() {
 }
 
 function greps() {
-    local curpath=$(pwd)
-    mdfind -onlyin . $1 | cut -c $((${#curpath} + 2))- | xargs grep -iH $1
+    #local curpath=$(pwd)
+    #mdfind -onlyin . $1 | cut -c $((${#curpath} + 2))- | xargs grep -iH $1
+    ggrep -ir $1 . | nkf -w
 }
 
 
@@ -86,7 +87,7 @@ PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/share/n
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 #export PATH="$HOME/.rbenv/bin:$PATH"
-[ -d ~/.rbenv ] && eval "$(rbenv init -)"
+#[ -d ~/.rbenv ] && eval "$(rbenv init -)"
 
 # for Mac sqlplus
 #export DYLD_LIBRARY_PATH=/Applications/instantclient
@@ -100,3 +101,4 @@ export PATH=$PATH:$HOME/bin
 # load local environments
 [ -f ~/.zshrc_local ] && source ~/.zshrc_local
 
+[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux

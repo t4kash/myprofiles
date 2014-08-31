@@ -5,11 +5,11 @@
 set nocompatible
 
 " shiftwidth
-set sw=2
+set sw=4
 " tabstop
-set ts=2
+set ts=4
 " softtabstop
-set sts=2
+set sts=4
 " autoindent
 "set ai
 " tab to space
@@ -72,6 +72,10 @@ au FileType php setlocal ts=4 sts=4 sw=4 et
 au FileType ruby setlocal ts=2 sts=2 sw=2 et
 au FileType eruby setlocal ts=2 sts=2 sw=2 et
 
+" for Flash
+autocmd BufRead *.as set filetype=actionscript
+autocmd BufRead *.mxml set filetype=mxml
+
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,euc-jisx0213,sjis
 
@@ -119,6 +123,9 @@ if exists('*neobundle#rc')
 
   NeoBundle 'kchmck/vim-coffee-script'
 
+  NeoBundle 'The-NERD-tree'
+  NeoBundle 'h1mesuke/vim-alignta'
+
   NeoBundleCheck
 endif
 
@@ -139,6 +146,8 @@ nmap <Space>c :SyntasticCheck<CR>
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nmap <Space>2 :set ts=2 sts=2 sw=2<CR>
 nmap <Space>z :w<CR>
+nmap <Space>q :q<CR>
+nmap <Space>n :NERDTreeToggle<CR>
 
 function! g:MyDeleteBuffer()
     let l:bn = bufnr("%")
