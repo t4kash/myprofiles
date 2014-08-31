@@ -1,104 +1,83 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt hist_ignore_dups
-setopt share_history
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-setopt auto_pushd
-setopt auto_cd
-#setopt correct
-setopt list_packed
-setopt nolistbeep
-
-# basePS="[%n@%m %c]$ "
-# PROMPT="%B%{[33m%}${basePS}%{[m%}%b"
-
-# set terminal title
-#case "${TERM}" in
-#kterm*|xterm*)
-#    precmd() {
-#        #echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-#        echo -ne "\033]0;s\007"
-#    }
-#    PROMPT="%B%{[33m%}${basePS}%{[m%}%b"
-#    ;;
-#*)
-#    PROMPT="${basePS}"
-#    ;;
-#esac
-
-# historical backward/forward search with linehead string binded to ^P/^N
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
-
-
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-
-if [ -f /usr/local/bin/vim ]; then
-  export SVN_EDITOR=/usr/local/bin/vim
-  alias view='/usr/local/bin/vim -R'
-  alias vim='/usr/local/bin/vim'
-  alias vi='/usr/local/bin/vim'
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+if [ "$ITERM_PROFILE" = "EUC-JP" ]; then
+  ZSH_THEME_CLOUD_PREFIX='[EUC]'
+  ZSH_THEME="cloud"
+else
+  themes=($'\U1F42F' $'\U1F30F' $'\U1F604' $'\U1F4A9' $'\U1F449' $'\U1F496' $'\U1F412' $'\U1F433' $'\U1F422' $'\U1F320' $'\U1F340' $'\U1F47B' $'\U1F376' $'\U1F349' $'\U1F608' $'\U1F335')
+  n=$#themes
+  ((n=RANDOM % n + 1))
+  ZSH_THEME_CLOUD_PREFIX=$themes[n]
+  ZSH_THEME="cloud"
 fi
 
-#alias ls='ls -F'
-alias doc='cd ~/Documents'
-alias down='cd ~/Downloads'
-[ -f /usr/local/bin/svn ] && alias svn='/usr/local/bin/svn'
-alias works='cd ~/Documents/workspace'
-alias memo='cd ~/Dropbox/memo'
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-function grepsvn() {
-#   grep -ir $* | grep -v .svn
-#   find . -name .svn -prune -o -type f -exec grep -iH $* {} \;
-    find . -name .svn -prune -o -type f | grep -v '\.exe' | grep -v .svn | grep -v '\.pdf$' | xargs grep -iH --binary-files=without-match $*
-}
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-function greps() {
-    #local curpath=$(pwd)
-    #mdfind -onlyin . $1 | cut -c $((${#curpath} + 2))- | xargs grep -iH $1
-    ggrep -ir $1 . | nkf -w
-}
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-PATH=$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/share/npm/bin
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-#
-#export RAILS_ENV=production
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-#export CC=/usr/local/bin/gcc-4.2
+# Uncomment the following line to disable command auto-correction.
+# DISABLE_CORRECTION="true"
 
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
 
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
 
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#[ -d ~/.rbenv ] && eval "$(rbenv init -)"
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# for Mac sqlplus
-#export DYLD_LIBRARY_PATH=/Applications/instantclient
-export PATH=$PATH:/Applications/instantclient
-export NLS_LANG=American_Japan.JA16EUC
-#export SQLPATH=/Applications/instantclient
-alias sqlplus='DYLD_LIBRARY_PATH=/Applications/instantclient SQLPATH=/Applications/instantclient /Applications/instantclient/sqlplus'
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
 
-export PATH=$PATH:$HOME/bin
+source $ZSH/oh-my-zsh.sh
 
-# load local environments
-[ -f ~/.zshrc_local ] && source ~/.zshrc_local
+# User configuration
 
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
