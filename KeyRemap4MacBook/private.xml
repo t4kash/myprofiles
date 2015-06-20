@@ -20,7 +20,8 @@
       <name>Parallels windows kana key</name>
       <identifier>private.app_parallels_windows_kana</identifier>
       <only>VIRTUALMACHINE</only>
-      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::BACKQUOTE, VK_OPTION</autogen>
+      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, KeyCode::BACKQUOTE, VK_OPTION</autogen>
+      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_L, KeyCode::COMMAND_L, KeyCode::BACKQUOTE, VK_OPTION</autogen>
     </item>
   </list>
 </root>
