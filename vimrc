@@ -34,6 +34,8 @@ set wildmenu
 " fix east asian UTF-8 charactor width
 set ambiwidth=double
 
+inoremap jk <esc>
+
 " cursor motion in insert mode
 "inoremap <C-n> <Down>
 "inoremap <C-p> <Up>
@@ -68,9 +70,15 @@ au BufNewFile *.php set fileencoding=euc-jp
 au BufNewFile *.sql set fileencoding=euc-jp
 au FileType php setlocal ts=4 sts=4 sw=4 et
 
+" for Python
+au FileType python setlocal ts=4 sts=4 sw=4 et
+
 " set filetype to ruby when open a file.
 au FileType ruby setlocal ts=2 sts=2 sw=2 et
 au FileType eruby setlocal ts=2 sts=2 sw=2 et
+
+" html, css, js, coffee
+au FileType html,js,css,scss,coffee setlocal ts=2 sts=2 sw=2 et
 
 " for Flash
 autocmd BufRead *.as set filetype=actionscript
@@ -125,6 +133,10 @@ if exists('*neobundle#rc')
 
   NeoBundle 'The-NERD-tree'
   NeoBundle 'h1mesuke/vim-alignta'
+  NeoBundle 'yuratomo/w3m.vim'
+  "NeoBundle 'davidhalter/jedi-vim'
+  "
+  NeoBundle 'evidens/vim-twig'
 
   NeoBundleCheck
 endif
@@ -145,6 +157,7 @@ nmap <Space>s :let g:myvsbufnr=bufnr("%")\|VimShell<CR>
 nmap <Space>c :SyntasticCheck<CR>
 nnoremap <silent> <C-l> :noh<CR><C-l>
 nmap <Space>2 :set ts=2 sts=2 sw=2<CR>
+nmap <Space>4 :set ts=4 sts=4 sw=4<CR>
 nmap <Space>z :w<CR>
 nmap <Space>q :q<CR>
 nmap <Space>n :NERDTreeToggle<CR>
@@ -200,7 +213,8 @@ let g:quickrun_config.html = {
             \ }
 
 "let g:syntastic_phpcs_conf = 0
-let g:syntastic_phpcs_conf = '-n'
+"let g:syntastic_phpcs_conf = '-n'
+let g:syntastic_php_phpcs_args = '-n'
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['php'] }
@@ -343,6 +357,7 @@ let g:lightline = {
 
 " For ctrlp
 let g:ctrlp_working_path_mode = 'a'
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/*.pyc
 
 " For vim-session
 set sessionoptions-=curdir
