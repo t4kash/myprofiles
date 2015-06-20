@@ -101,4 +101,4 @@ export PATH=$PATH:$HOME/bin
 # load local environments
 [ -f ~/.zshrc_local ] && source ~/.zshrc_local
 
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
+# [[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
