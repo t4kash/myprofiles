@@ -66,8 +66,8 @@ set splitright
 
 " set filetype to php when open the *.inc
 au BufNewFile,BufRead *.inc setf php
-au BufNewFile *.php set fileencoding=euc-jp
-au BufNewFile *.sql set fileencoding=euc-jp
+" au BufNewFile *.php set fileencoding=euc-jp
+" au BufNewFile *.sql set fileencoding=euc-jp
 au FileType php setlocal ts=4 sts=4 sw=4 et
 
 " for Python
@@ -89,60 +89,76 @@ set fileencodings=utf-8,iso-2022-jp,euc-jp,euc-jisx0213,sjis
 
 
 " NeoBundle
-set nocompatible               " be iMproved
-filetype plugin indent off     " required!
+if 0 | endif
 
 if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
-if exists('*neobundle#rc')
-  NeoBundleFetch 'Shougo/neobundle.vim'
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-  NeoBundle 'Shougo/vimproc', {
-    \   'build' : {
-    \     'mac' : 'make -f make_mac.mak'
-    \   }
-    \ }
-  NeoBundle 'Shougo/unite.vim'
-  NeoBundle 'Shougo/vimfiler'
-  NeoBundle 'Shougo/vimshell'
-  NeoBundle 'Shougo/neocomplcache'
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-  NeoBundle 'thinca/vim-quickrun'
-  "NeoBundle 'thinca/vim-ref'
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+NeoBundle 'Shougo/vimproc', {
+  \   'build' : {
+  \     'mac' : 'make -f make_mac.mak'
+  \   }
+  \ }
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/neocomplcache'
 
-  NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'thinca/vim-quickrun'
+"NeoBundle 'thinca/vim-ref'
 
-  NeoBundle 'tpope/vim-endwise'
-  "NeoBundle 'ruby-matchit'
-  "NeoBundle 'ujihisa/unite-rake'
-  "NeoBundle 'basyura/unite-rails'
-  NeoBundle 'scrooloose/syntastic.git'
+NeoBundle 'kien/ctrlp.vim'
 
-  NeoBundle 'mattn/emmet-vim'
-  NeoBundle 'mattn/sonictemplate-vim'
-  "NeoBundle 'bling/vim-airline.git'
-  NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tpope/vim-endwise'
+"NeoBundle 'ruby-matchit'
+"NeoBundle 'ujihisa/unite-rake'
+"NeoBundle 'basyura/unite-rails'
+NeoBundle 'scrooloose/syntastic.git'
 
-  "NeoBundle 'xolox/vim-misc'
-  "NeoBundle 'xolox/vim-session'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'mattn/sonictemplate-vim'
+"NeoBundle 'bling/vim-airline.git'
+NeoBundle 'itchyny/lightline.vim'
 
-  NeoBundle 'kchmck/vim-coffee-script'
+"NeoBundle 'xolox/vim-misc'
+"NeoBundle 'xolox/vim-session'
 
-  NeoBundle 'The-NERD-tree'
-  NeoBundle 'h1mesuke/vim-alignta'
-  NeoBundle 'yuratomo/w3m.vim'
-  "NeoBundle 'davidhalter/jedi-vim'
-  "
-  NeoBundle 'evidens/vim-twig'
+NeoBundle 'kchmck/vim-coffee-script'
 
-  NeoBundleCheck
-endif
+NeoBundle 'The-NERD-tree'
+NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'yuratomo/w3m.vim'
+"NeoBundle 'davidhalter/jedi-vim'
+"
+NeoBundle 'evidens/vim-twig'
 
+"NeoBundle 'wakatime/vim-wakatime'
+
+call neobundle#end()
+
+" Required:
 filetype plugin indent on
-"filetype plugin on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 
 
 " Keys
